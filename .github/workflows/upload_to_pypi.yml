@@ -11,6 +11,10 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
+    # build wheels for all supported CPython releases, skipping 32-bit and musllinux
+    env:
+      CIBW_BUILD: "cp3*"
+      CIBW_SKIP: "cp36-* cp37-* cp38-* *i686 *musllinux* *win32"
 
     steps:
       - uses: actions/checkout@v3
@@ -25,7 +29,7 @@ jobs:
         # available yet which can cause the build to fail. Keep going, and upload
         # the wheels for all of the previous versions when that happens.
         continue-on-error: true
-        uses: pypa/cibuildwheel@v2.1.1
+        uses: pypa/cibuildwheel@v2.22.0
 
       - uses: actions/upload-artifact@v4
         with:
