@@ -79,5 +79,7 @@ jobs:
 
       - uses: pypa/gh-action-pypi-publish@v1.8.11
         with:
-          user: __token__
-          password: ${{ secrets.PYPI_API_TOKEN }}
+          user: ampelastro-sncosmo-deploy
+          password: ${{ secrets.GITLAB_DEPLOY_TOKEN }}
+          repository_url: https://gitlab.desy.de/api/v4/projects/jakob.van.santen%2Fampel-pypi-demo/packages/pypi
+
